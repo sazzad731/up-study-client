@@ -65,7 +65,11 @@ const Header = () => {
               className="hover:border-b-2 border-black dark:border-white transition-colors font-bold"
               style={({ isActive }) => {
                 return {
-                  borderBottom: isActive ? "2px solid black" : "",
+                  borderBottom: isActive
+                    ? theme === "dark"
+                      ? "2px solid white"
+                      : "2px solid black"
+                    : "",
                 };
               }}
             >
@@ -78,7 +82,11 @@ const Header = () => {
               className="hover:border-b-2 border-black dark:border-white transition-colors font-bold"
               style={({ isActive }) => {
                 return {
-                  borderBottom: isActive ? "2px solid black" : "",
+                  borderBottom: isActive
+                    ? theme === "dark"
+                      ? "2px solid white"
+                      : "2px solid black"
+                    : "",
                 };
               }}
             >
@@ -91,7 +99,11 @@ const Header = () => {
               className="hover:border-b-2 border-black dark:border-white transition-colors font-bold"
               style={({ isActive }) => {
                 return {
-                  borderBottom: isActive ? "2px solid black" : "",
+                  borderBottom: isActive
+                    ? theme === "dark"
+                      ? "2px solid white"
+                      : "2px solid black"
+                    : "",
                 };
               }}
             >
@@ -99,7 +111,7 @@ const Header = () => {
             </NavLink>
           </li>
         </ul>
-        <div onClick={handleTheme} className="sm:me-5 w-auto">
+        <div className="sm:me-5 w-auto">
           <label className="flex cursor-pointer gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -116,6 +128,7 @@ const Header = () => {
               <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
             </svg>
             <input
+              onClick={handleTheme}
               type="checkbox"
               value="synthwave"
               className="toggle theme-controller"
@@ -153,16 +166,16 @@ const Header = () => {
             className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box sm:w-52 dark:bg-slate-900"
           >
             <li>
-              <a className="justify-between">
+              <a className="justify-between dark:hover:bg-slate-700">
                 Profile
                 <span className="badge">New</span>
               </a>
             </li>
             <li>
-              <a>Settings</a>
+              <a className="dark:hover:bg-slate-700">Settings</a>
             </li>
             <li>
-              <a>Logout</a>
+              <a className="dark:hover:bg-slate-700">Logout</a>
             </li>
           </ul>
         </div>
