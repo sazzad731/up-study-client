@@ -9,7 +9,7 @@ const CourseDetails = () => {
   return (
     <div>
       <div className="mb-10">
-        <h2 className="text-3xl font-semibold text-center mb-10 text-center">
+        <h2 className="text-3xl font-semibold text-center mb-10">
           {title}
         </h2>
         <p>{details}</p>
