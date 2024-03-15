@@ -1,24 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useContext, useState } from "react";
 import { UserAuthContext } from "../../context/AuthCountext";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [ error, setError ] = useState();
-  const { createAccountWithPassword, googleSignIn, gitHubSignIn } = useContext(UserAuthContext);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
+  const {
+    createAccountWithPassword,
+    googleSignIn,
+    gitHubSignIn,
+    updateUserProfile,
+    verifyEmail,
+  } = useContext(UserAuthContext);
   
-  const handleAccountWithPassword = (event) =>
+  const handleSignUpWithPassword = (event) =>
   {
     event.preventDefault()
     const form = event.target;
     const name = form.username.value;
+    const photoURL = form.PhotoUrl.value;
     const email = form.email.value;
     const password = form.password.value;
     createAccountWithPassword(email, password)
-      .then(result =>
+      .then(() =>
       {
-        console.log(result.user);
+        handleVerifyEmail();
+        handleUpdateUserProfile(name, photoURL)
+        toast.error("Please verify your email")
+        toast.success("Successfully created account")
+        navigate(from, {replace: true})
       })
       .catch(error =>
       {
@@ -33,7 +48,10 @@ const Register = () => {
   const handleGoogleSignIn = () =>
   {
     googleSignIn()
-      .then(()=>{})
+      .then(() =>
+      {
+        navigate(from, { replace: true });
+      })
       .catch(error =>
       {
         console.log(error.message);
@@ -43,20 +61,40 @@ const Register = () => {
   const handleGitHubSignIn = () =>
   {
     gitHubSignIn()
-      .then(result =>
+      .then(() =>
       {
-        console.log(result.user);
+        navigate(from, { replace: true });
       })
       .catch(error =>
       {
         console.error(error.message);
       });
   }
+
+  const handleUpdateUserProfile = (name, photoURL) =>
+  {
+    const profile = {
+      displayName: name,
+      photoURL: photoURL,
+    };
+    updateUserProfile(profile)
+      .then(() => { })
+      .catch(error => console.log(error.message))
+  }
+
+  const handleVerifyEmail = () =>
+  {
+    verifyEmail()
+      .then(() => { })
+      .catch(error => console.error(error.message))
+  }
+
+
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <h2 className=" text-4xl font-semibold mb-10">Create Your Account</h2>
       <form
-        onSubmit={handleAccountWithPassword}
+        onSubmit={handleSignUpWithPassword}
         className="w-80 md:min-w-[35rem] bg-white px-5 py-10 shadow rounded-md dark:bg-slate-800"
       >
         <div className="mb-5">
@@ -74,6 +112,30 @@ const Register = () => {
               name="username"
               className="grow"
               placeholder="Name"
+              required
+            />
+          </label>
+          <label className="input input-bordered flex items-center gap-2 mb-5 dark:bg-slate-900">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="w-4 h-4 opacity-70"
+            >
+              <path
+                d="M15 16H17C19.2091 16 21 14.2091 21 12C21 9.79086 19.2091 8 17 8H15M8 12H16M9 8H7C4.79086 8 3 9.79086 3 12C3 14.2091 4.79086 16 7 16H9"
+                stroke="#000000"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <input
+              type="text"
+              name="PhotoUrl"
+              className="grow"
+              placeholder="Photo Url"
+              required
             />
           </label>
           <div className="mb-5">
@@ -92,6 +154,7 @@ const Register = () => {
                 name="email"
                 className="grow"
                 placeholder="Email"
+                required
               />
             </label>
             <p className="text-red-500">{error}</p>
@@ -114,6 +177,7 @@ const Register = () => {
               name="password"
               className="grow"
               placeholder="Password"
+              required
             />
           </label>
           <div className="flex items-center justify-end text-violet-700">

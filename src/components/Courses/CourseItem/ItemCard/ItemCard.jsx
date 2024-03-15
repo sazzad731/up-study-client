@@ -1,9 +1,9 @@
 import { FaStar, FaEye } from "react-icons/fa6";
 const ItemCard = ({ item }) => {
   return (
-    <div className="flex items-center mb-10 shadow-xl rounded-lg p-3 dark:bg-slate-900">
+    <div className="flex flex-col lg:flex-row items-center mb-10 shadow-xl rounded-lg p-3 dark:bg-slate-900">
       <img
-        className="w-52 rounded-lg me-5 h-52 object-cover"
+        className="w-52 rounded-lg lg:me-5 h-52 object-cover mb-7 lg:mb-0"
         src={item.thumbnail_url}
         alt="thumbnail"
       />

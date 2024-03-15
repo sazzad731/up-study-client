@@ -1,11 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
-import { FaBars, FaXmark } from "react-icons/fa6";
+import { FaBars, FaUserLarge, FaXmark } from "react-icons/fa6";
 import { useContext, useEffect, useState } from "react";
 import { ToggleTheme } from "../../context/ThemeContext";
+import { UserAuthContext } from "../../context/AuthCountext";
+import toast from "react-hot-toast";
 
 const Header = () => {
   const { theme, setTheme } = useContext(ToggleTheme);
   const [ navActive, setNavActive ] = useState(false);
+  const { user, userSignOut } = useContext(UserAuthContext);
+  console.log(user);
   useEffect(() =>
   {
     if (theme === "dark")
@@ -20,6 +24,19 @@ const Header = () => {
   const handleTheme = () =>
   {
     setTheme(theme === "dark"?"light":"dark")
+  }
+
+  const handleUserSignOut = () =>
+  {
+    userSignOut()
+      .then(() =>
+      {
+      toast.success("Successful log out")
+      })
+      .catch(error =>
+      {
+        console.error(error.message);
+    })
   }
 
   return (
@@ -148,37 +165,56 @@ const Header = () => {
             </svg>
           </label>
         </div>
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-              />
+
+        {user ? (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                {user?.photoURL ? (
+                  <img
+                    alt="Tailwind CSS Navbar component"
+                    src={user.photoURL}
+                  />
+                ) : (
+                  <FaUserLarge className="w-10 h-10" />
+                )}
+              </div>
             </div>
+            <ul
+              tabIndex={0}
+              className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box sm:w-52 dark:bg-slate-900"
+            >
+              <li>
+                <a className="justify-between dark:hover:bg-slate-700">
+                  {user.displayName}
+                  <span className="badge">Profile</span>
+                </a>
+              </li>
+              <li>
+                <a className="dark:hover:bg-slate-700">Settings</a>
+              </li>
+              <li>
+                <a
+                  onClick={handleUserSignOut}
+                  className="dark:hover:bg-slate-700"
+                >
+                  Logout
+                </a>
+              </li>
+            </ul>
           </div>
-          <ul
-            tabIndex={0}
-            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box sm:w-52 dark:bg-slate-900"
+        ) : (
+          <Link
+            to="/login"
+            className="bg-black text-white dark:bg-slate-800 font-medium py-2 px-4 rounded-md"
           >
-            <li>
-              <a className="justify-between dark:hover:bg-slate-700">
-                Profile
-                <span className="badge">New</span>
-              </a>
-            </li>
-            <li>
-              <a className="dark:hover:bg-slate-700">Settings</a>
-            </li>
-            <li>
-              <a className="dark:hover:bg-slate-700">Logout</a>
-            </li>
-          </ul>
-        </div>
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

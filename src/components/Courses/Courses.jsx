@@ -7,7 +7,7 @@ const Courses = () => {
   const [ activeCategories, setActiveCategories ] = useState("");
   return (
     <div className="flex gap-10">
-      <div>
+      <div className="hidden md:block">
         <SideBar setActiveCategories={setActiveCategories} />
       </div>
       <div>

@@ -8,6 +8,7 @@ import CourseDetails from "../components/Courses/CourseDetails/CourseDetails";
 import CourseItem from "../components/Courses/CourseItem/CourseItem";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "/courses",
-            element: <CourseItem/>
+            element: <CourseItem />,
           },
           {
             path: "/courses/:id",
@@ -45,7 +46,11 @@ export const router = createBrowserRouter([
         loader: ({ params }) => {
           return fetch(`https://upstudy-server.vercel.app/course/${params.id}`);
         },
-        element: <CourseDetails />,
+        element: (
+          <PrivateRoute>
+            <CourseDetails/>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/faq",
@@ -57,12 +62,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login/>
+        element: <Login />,
       },
       {
         path: "/register",
-        element: <Register/>
-      }
+        element: <Register />,
+      },
     ],
   },
 ]);

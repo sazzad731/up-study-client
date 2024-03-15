@@ -4,7 +4,6 @@ import ItemCard from "./ItemCard/ItemCard";
 const CourseItem = () => {
   const categoryCourses = useLoaderData();
   const { allCourse, activeCategories } = useOutletContext();
-  // console.log(courseItem)
   return (
     <div className="">
       <h1 className="text-3xl font-bold text-center mb-20">
