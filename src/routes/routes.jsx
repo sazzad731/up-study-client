@@ -9,6 +9,7 @@ import CourseItem from "../components/Courses/CourseItem/CourseItem";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import PrivateRoute from "./PrivateRoute";
+import Checkout from "../components/Checkout/Checkout";
 
 export const router = createBrowserRouter([
   {
@@ -48,7 +49,18 @@ export const router = createBrowserRouter([
         },
         element: (
           <PrivateRoute>
-            <CourseDetails/>
+            <CourseDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/courses/chackout/:id",
+        loader: ({ params }) => {
+          return fetch(`https://upstudy-server.vercel.app/course/${params.id}`);
+        },
+        element: (
+          <PrivateRoute>
+            <Checkout />
           </PrivateRoute>
         ),
       },

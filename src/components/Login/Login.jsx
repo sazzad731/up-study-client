@@ -55,7 +55,8 @@ const Login = () => {
 
   const handleGitHubSignIn = () => {
     gitHubSignIn()
-      .then(() => {
+      .then(() =>
+      {
         navigate(from, { replace: true });
       })
       .catch((error) => {

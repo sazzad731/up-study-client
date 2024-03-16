@@ -9,7 +9,6 @@ const Header = () => {
   const { theme, setTheme } = useContext(ToggleTheme);
   const [ navActive, setNavActive ] = useState(false);
   const { user, userSignOut } = useContext(UserAuthContext);
-  console.log(user);
   useEffect(() =>
   {
     if (theme === "dark")

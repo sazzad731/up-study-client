@@ -6,6 +6,7 @@ import { UserAuthContext } from "../../context/AuthCountext";
 import toast from "react-hot-toast";
 
 const Register = () => {
+  
   const [ error, setError ] = useState();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -120,11 +121,11 @@ const Register = () => {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-4 h-4 opacity-70"
+              className="w-5 h-5 opacity-70"
             >
               <path
                 d="M15 16H17C19.2091 16 21 14.2091 21 12C21 9.79086 19.2091 8 17 8H15M8 12H16M9 8H7C4.79086 8 3 9.79086 3 12C3 14.2091 4.79086 16 7 16H9"
-                stroke="#000000"
+                stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
