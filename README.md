@@ -10,7 +10,7 @@
 4. React hot toast
 5. React icon
 
-# Live Link `https://up-study-731.web.app`
+# Live Link https://up-study-731.web.app
 
 
 
