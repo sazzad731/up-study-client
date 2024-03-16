@@ -26,13 +26,13 @@ const Home = () => {
           {theme === "dark" ? (
             <img
               className="w-1/2 sm:w-[30rem] mx-auto z-[1]"
-              src="../../../src/assets/image/dark-hero-img.png"
+              src="/image/dark-hero-img.png"
               alt="hero image"
             />
           ) : (
             <img
               className="w-1/2 sm:w-[30rem] mx-auto z-[1]"
-              src="../../../src/assets/image/ligh-hero-img.png"
+              src="/image/ligh-hero-img.png"
               alt="hero image"
             />
           )}
@@ -49,7 +49,7 @@ const Home = () => {
               <div className="flex items-center justify-center w-32 h-32 bg-gradient-to-t from-rose-600 to-rose-400 rounded-full shadow-2xl shadow-red-600">
                 <img
                   className="w-1/2"
-                  src="../../../src/assets/image/html.png"
+                  src="/image/html.png"
                   alt=""
                 />
               </div>
@@ -69,7 +69,7 @@ const Home = () => {
               <div className="flex items-center justify-center w-32 h-32 bg-gradient-to-t from-violet-800 to-rose-200 rounded-full shadow-2xl shadow-violet-700">
                 <img
                   className="w-2/4"
-                  src="../../../src/assets/image/css.png"
+                  src="/image/css.png"
                   alt=""
                 />
               </div>
@@ -89,7 +89,7 @@ const Home = () => {
               <div className="flex items-center justify-center w-32 h-32 bg-gradient-to-t from-orange-400 to-yellow-300 rounded-full shadow-2xl shadow-orange-600">
                 <img
                   className="w-1/2"
-                  src="../../../src/assets/image/javaScript.png"
+                  src="/image/javaScript.png"
                   alt=""
                 />
               </div>

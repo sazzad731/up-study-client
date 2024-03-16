@@ -45,14 +45,14 @@ const Header = () => {
           {theme === "dark" ? (
             <img
               className="w-32 sm:w-44"
-              src="../../../src/assets/image/logo/white-logo.png"
+              src="./image/white-logo.png"
               alt="brand"
             />
           ) : (
             <img
               className="w-32 sm:w-44"
-              src="../../../src/assets/image/logo/dark-logo.png"
-              alt="brand logo"
+              src="/image/dark-logo.png"
+              alt="brand"
             />
           )}
         </Link>
