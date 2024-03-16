@@ -1,6 +1,6 @@
-### Upstudy
+# Upstudy
 
-# This is a learning platform
+### This is a learning platform
 
 ## What i used here
 
@@ -10,7 +10,7 @@
 4. React hot toast
 5. React icon
 
-# Live Link https://up-study-731.web.app
+# Live Link: [https://up-study-731.web.app]
 
 
 
