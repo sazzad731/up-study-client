@@ -10,6 +10,7 @@ import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import PrivateRoute from "./PrivateRoute";
 import Checkout from "../components/Checkout/Checkout";
+import Error404 from "../components/Error404/Error404";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
       },
       {
         path: "/blog",
+        loader: () =>
+        {
+          return fetch("https://upstudy-server.vercel.app/blog");
+        },
         element: <Blog />,
       },
       {
@@ -82,4 +87,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: <Error404/>
+  }
 ]);
